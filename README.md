@@ -1,6 +1,6 @@
 # mBlock3 extensions
 
-A repository of extensions for the graphical IDE mBlock3. You may found
+A repository of extensions for the graphical IDE mBlock3. You may find
 english, spanish, galician or even other languages in here.
 
 Enjoy!
