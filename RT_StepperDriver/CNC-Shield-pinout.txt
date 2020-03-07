@@ -1,0 +1,23 @@
+CNC-Shield v3.xx pinout for StepperDriver
+
+https://blog.protoneer.co.nz/grbl-arduino-g-code-processor-pin-layout/
+
+X-AXIS
+	pin step = 2
+	pin direction = 5
+	pin enable = 8
+	pin end-stop = 9  X- == X+
+
+Y-AXIS
+	pin step = 3
+	pin direction = 6
+	pin enable = 8
+	pin end-stop = 10  Y- == Y+
+
+Z-AXIS
+	pin step = 4
+	pin direction = 7
+	pin enable = 8
+	pin end-stop = 11  Z- == Z+
+
+
