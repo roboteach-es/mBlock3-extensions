@@ -1,0 +1,52 @@
+{
+	"extensionName": "Input-PullUP",
+	"description": "To read digital or analog inputs configured in PULLUP mode.\nOnly for Arduino mode.",
+	"version": "1.0.2",
+	"author": "RoboTeach(info@roboteach.es)",
+	"homepage": "https://roboteach.es/mblock3",
+	"sort": 0,
+	"javascriptURL": "js/Input-PullUP.js",
+	"firmware": "1.0",
+	"extensionPort": 0,
+	"tags" : "roboteach, makeblock, input, pullup, input_pullup, analog, digital",
+	"blockSpecs": [
+		["b",
+			"read digital pin %n",
+			"getDigital",
+			"9",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "pinMode({0}, INPUT_PULLUP);\n",
+				"work": "digitalRead({0})",
+				"loop": ""
+			}
+		],
+		["r",
+			"read analog pin A%n",
+			"getAnalog",
+			"4",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "pinMode(A0+{0}, INPUT_PULLUP);\n",
+				"work": "analogRead(A0+{0})",
+				"loop": ""
+			}
+		]
+	],
+	"menus":{
+	},
+	"values":{
+	},
+	"translators":{
+		"es_ES":{
+			"Input-PullUP": "Entrada-PullUP",
+			"To read digital or analog inputs configured in PULLUP mode.\nOnly for Arduino mode.": "Para leer entradas analógicas o digitales configuradas en modo PULLUP.",
+			"read digital pin %n": "lee pin digital %n",
+			"read analog pin A%n": "lee pin analógico A%n"
+		}
+	}
+}

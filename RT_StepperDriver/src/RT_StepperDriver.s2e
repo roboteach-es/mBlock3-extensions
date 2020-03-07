@@ -1,0 +1,161 @@
+{
+	"extensionName": "StepperDriver",
+	"description": "Use stepper motors via a generic Step/Direction/Enable driver, with or without acceleration.\nBased on the StepperDriver library by Laurentiu Badea (https://github.com/laurb9/StepperDriver).\nOnly for Arduino mode.",
+	"version": "1.0.2",
+	"author": "RoboTeach(info@roboteach.es)",
+	"homepage": "https://roboteach.es/mblock3",
+	"sort": 0,
+	"javascriptURL": "",
+	"firmware": "1.0",
+	"extensionPort": 0,
+	"tags" : "roboteach, makeblock, stepper, stepper-motor, driver, stepper-driver, acceleration, A4988",
+	"blockSpecs": [
+		["w",
+			"setup stepper %d.sm : Motor steps=%n RPM=%n Step pin=%n Dir pin=%n En pin=%n",
+			"setup",
+			"M1", "200", "120", "2", "5", "8",
+			{
+				"encode": "{d0}",
+				"inc": "#include \"BasicStepperDriver.h\"",
+				"def": "BasicStepperDriver RT_sd{0}({1}, {4}, {3}, {5});\n",
+				"setup": "RT_sd{0}.setEnableActiveState(LOW);\nRT_sd{0}.begin({2}, 1);\nRT_sd{0}.enable();\n",
+				"work": "",
+				"loop": "RT_sd{0}.nextAction();\n"
+			}
+		],
+		["w",
+			"set stepper %d.sm to %n RPM",
+			"setRPM",
+			"M1", "200",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "",
+				"work": "RT_sd{0}.setRPM({1});\n",
+				"loop": ""
+			}
+		],
+		["w",
+			"set stepper %d.sm acceleration=%n and deceleration=%n",
+			"setSpeedProfile",
+			"M1", "100", "100",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "BasicStepperDriver::Mode RT_sd{0}_Mode=BasicStepperDriver::CONSTANT_SPEED;\n",
+				"setup": "",
+				"work": "RT_sd{0}_Mode=BasicStepperDriver::Mode({1}!=0 || {2}!=0);\nRT_sd{0}.setSpeedProfile(RT_sd{0}_Mode, {1}, {2});\n",
+				"loop": ""
+			}
+		],
+		["w",
+			"set stepper %d.sm state %d.state",
+			"setState",
+			"M1", "Disabled",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "",
+				"work": "if ({1}) RT_sd{0}.enable();\nelse RT_sd{0}.disable();\n",
+				"loop": ""
+			}
+		],
+		["w",
+			"move stepper %d.sm %n steps",
+			"move",
+			"M1", "200",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "",
+				"work": "RT_sd{0}.startMove({1});\n",
+				"loop": ""
+			}
+		],
+		["w",
+			"rotate stepper %d.sm %n degrees",
+			"rotate",
+			"M1", "360",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "",
+				"work": "RT_sd{0}.startRotate({1});\n",
+				"loop": ""
+			}
+		],
+		["w",
+			"stop stepper %d.sm",
+			"stop",
+			"M1",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "",
+				"work": "RT_sd{0}.stop();\n",
+				"loop": ""
+			}
+		],
+
+		["b",
+			"stepper %d.sm moving",
+			"moving",
+			"M1",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "",
+				"work": "(RT_sd{0}.getCurrentState()!=RT_sd{0}.STOPPED)",
+				"loop": ""
+			}
+		],
+		["b",
+			"end-stop on pin %n closed",
+			"esClosed",
+			"9",
+			{
+				"encode": "{d0}",
+				"inc": "",
+				"def": "",
+				"setup": "pinMode({0}, INPUT_PULLUP);\n",
+				"work": "(!digitalRead({0}))",
+				"loop": ""
+			}
+		]
+	],
+	"menus":{
+		"sm": ["M1", "M2", "M3", "M4"],
+		"state": ["enabled", "disabled"]
+	},
+	"values":{
+		"M1": 1,
+		"M2": 2,
+		"M3": 3,
+		"M4": 4,
+		"enabled": 1,
+		"disabled": 0
+	},
+	"translators":{
+		"es_ES":{
+			"StepperDriver": "ControlPasoaPaso",
+			"Use stepper motors via a generic Step/Direction/Enable driver, with or without acceleration.\nBased on the StepperDriver library by Laurentiu Badea (https://github.com/laurb9/StepperDriver).\nOnly for Arduino mode.": "Usa motores paso a paso con un controlador genérico Paso/Dirección/Activado, con o sin aceleración.\nBasado en la biblioteca StepperDriver de Laurentiu Badea (https://github.com/laurb9/StepperDriver).\nSolo para el modo Arduino.",
+			"setup stepper %d.sm : Motor steps=%n RPM=%n Step pin=%n Dir pin=%n En pin=%n": "Configura el PaP %d.sm : Pasos del motor=%n RPM=%n Pin pasos=%n Pin dir=%n Pin act=%n",
+			"set stepper %d.sm to %n RPM": "cambia el PaP %d.sm a %n RPM",
+			"set stepper %d.sm acceleration=%n and deceleration=%n": "cambia el PaP %d.sm : aceleración=%n deceleración=%n",
+			"set stepper %d.sm state %d.state": "cambia el estado del PaP: %d.sm a %d.state",
+			"move stepper %d.sm %n steps": "mueve el PaP %d.sm    %n pasos",
+			"rotate stepper %d.sm %n degrees": "gira el PaP %d.sm %n grados",
+			"stop stepper %d.sm": "detén el PaP %d.sm",
+			"stepper %d.sm moving": "está moviéndose el PaP %d.sm",
+			"end-stop on pin %n closed": "final de carrera en el pin %n cerrado",
+			"enabled": "activado",
+			"disabled": "desactivado"
+		}
+	}
+}
