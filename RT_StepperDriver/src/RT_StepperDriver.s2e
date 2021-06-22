@@ -1,7 +1,7 @@
 {
 	"extensionName": "StepperDriver",
 	"description": "Use stepper motors via a generic Step/Direction/Enable driver, with or without acceleration.\nBased on the StepperDriver library by Laurentiu Badea (https://github.com/laurb9/StepperDriver).\nOnly for Arduino mode.",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"author": "RoboTeach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
 	"sort": 0,
@@ -12,7 +12,7 @@
 	"blockSpecs": [
 		["w",
 			"setup stepper %d.sm : Motor steps=%n RPM=%n Step pin=%n Dir pin=%n En pin=%n",
-			"setup",
+			"setup_sd",
 			"M1", "200", "120", "2", "5", "8",
 			{
 				"encode": "{d0}",
@@ -25,7 +25,7 @@
 		],
 		["w",
 			"set stepper %d.sm to %n RPM",
-			"setRPM",
+			"setRPM_sd",
 			"M1", "200",
 			{
 				"encode": "{d0}",
@@ -38,7 +38,7 @@
 		],
 		["w",
 			"set stepper %d.sm acceleration=%n and deceleration=%n",
-			"setSpeedProfile",
+			"setSpeedProfile_sd",
 			"M1", "100", "100",
 			{
 				"encode": "{d0}",
@@ -51,7 +51,7 @@
 		],
 		["w",
 			"set stepper %d.sm state %d.state",
-			"setState",
+			"setState_sd",
 			"M1", "Disabled",
 			{
 				"encode": "{d0}",
@@ -64,7 +64,7 @@
 		],
 		["w",
 			"move stepper %d.sm %n steps",
-			"move",
+			"move_sd",
 			"M1", "200",
 			{
 				"encode": "{d0}",
@@ -77,7 +77,7 @@
 		],
 		["w",
 			"rotate stepper %d.sm %n degrees",
-			"rotate",
+			"rotate_sd",
 			"M1", "360",
 			{
 				"encode": "{d0}",
@@ -90,7 +90,7 @@
 		],
 		["w",
 			"stop stepper %d.sm",
-			"stop",
+			"stop_sd",
 			"M1",
 			{
 				"encode": "{d0}",
@@ -104,7 +104,7 @@
 
 		["b",
 			"stepper %d.sm moving",
-			"moving",
+			"moving_sd",
 			"M1",
 			{
 				"encode": "{d0}",
@@ -117,7 +117,7 @@
 		],
 		["b",
 			"end-stop on pin %n closed",
-			"isClosed",
+			"isClosed_sd",
 			"9",
 			{
 				"encode": "{d0}",
