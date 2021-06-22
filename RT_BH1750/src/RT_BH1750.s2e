@@ -1,0 +1,61 @@
+{
+	"extensionName": "BH1750",
+	"description": "Use a digital light sensor breakout board containing the BH1750FVI IC. \nOnly for Arduino mode.",
+	"version": "1.0.0",
+	"author": "ROBOteach(info@roboteach.es)",
+	"homepage": "https://roboteach.es/mblock3",
+	"sort": 0,
+	"javascriptURL": "",
+	"firmware": "1.0",
+	"extensionPort": 0,
+	"tags" : "roboteach, makeblock, sensor, light, BH1750",
+	"blockSpecs": [
+		["w",
+			"setup light sensor %d.ls : Address=%d.add",
+			"setup_ls",
+			"LS1", "LOW",
+			{
+				"encode": "{d0}{d1}",
+				"inc": "#include \"hp_BH1750.h\"\n",
+				"def": "hp_BH1750 RT_ls{0};\nfloat RT_ls{0}_getLux(BH1750Quality quality){\nRT_ls{0}.start(quality, BH1750_MTREG_DEFAULT);\nreturn RT_ls{0}.getLux();\n}\n",
+				"setup": "RT_ls{0}.begin({1});\n",
+				"work": "",
+				"loop": ""
+			}
+		],
+		["r",
+			"getLux %d.ls : Quality=%d.qly",
+			"getLux_ls",
+			"LS1", "QHIGH",
+			{
+				"encode": "{d0}{d1}",
+				"inc": "",
+				"def": "",
+				"setup": "",
+				"work": "RT_ls{0}_getLux((BH1750Quality){1})",
+				"loop": ""
+			}
+		]
+	],
+	"menus":{
+		"ls": ["LS1", "LS2"],
+		"add": ["LOW", "HIGH"],
+		"qly": ["QLOW", "QHIGH", "QHIGH2"]
+	},
+	"values":{
+		"LS1": 1,
+		"LS2": 2,
+		"LOW": 35,
+		"HIGH": 92,
+		"QLOW": 35,
+		"QHIGH": 32,
+		"QHIGH2": 33
+	},
+	"translators":{
+		"es_ES":{
+			"Use a digital light sensor breakout board containing the BH1750FVI IC. \nOnly for Arduino mode.": "Usa una placa sensora de luz con el chip BH1750FVI. \nSolo para el modo Arduino.",
+			"setup light sensor %d.ls : Address=%d.add": "Configura el sensor de luz %d.ls : Dirección=%d.add",
+			"getLux %d.ls : Quality=%d.qly": "Obtener Lux %d.ls : Calidad=%d.qly"
+		}
+	}
+}
