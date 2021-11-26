@@ -3,7 +3,6 @@
 EscornabotDIY escornabot;
 
 void setup() {
-    Serial.begin(115200);
     escornabot.playNote(NOTE_BEEP, 100);
 }
 

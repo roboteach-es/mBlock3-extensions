@@ -1,20 +1,20 @@
 {
 	"extensionName": "EscornabotDIY",
 	"description": "Program an Escornabot Brivoi DIY using mBlock3. \nOnly for Arduino mode.",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"author": "ROBOteach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
 	"sort": 0,
 	"javascriptURL": "",
 	"firmware": "1.0",
 	"extensionPort": 0,
-	"tags" : "roboteach, makeblock, sensor, light, BH1750",
+	"tags" : "roboteach, makeblock, Escornabot, robot",
 	"blockSpecs": [
 		["h", "EscornabotDIY","runArduino"],
 		["w", "move forward %n cms",
 			"MoveForward", 10, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.move({0});\n",
 				"loop": ""
@@ -23,7 +23,7 @@
 		["w", "move backward %n cms",
 			"MoveBackward", 10, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.move(-{0});\n",
 				"loop": ""
@@ -32,7 +32,7 @@
 		["w", "turn left %n degrees",
 			"TurnLeft", 90, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.turn(-{0});\n",
 				"loop": ""
@@ -41,7 +41,7 @@
 		["w", "turn right %n degrees",
 			"TurnRight", 90, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.turn({0});\n",
 				"loop": ""
@@ -50,7 +50,7 @@
 		["b", "button %m.buttons pressed",
 			"IsButtonPressed", "FORWARD", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work":"escornabot.isButtonPressed({0})",
 				"loop":""
@@ -59,7 +59,7 @@
 		["w", "beep %m.beeps",
 			"BeepSound", "DEFAULT SOUND", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.beep({0});\n",
 				"loop": ""
@@ -68,7 +68,7 @@
 		["w", "play %m.notes %m.duration",
 			"PlayNote", "A5", "QUAVER", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.playNote({0}, {1});\n",
 				"loop": ""
@@ -77,7 +77,7 @@
 		["w", "turn on-board LED %m.onoff",
 			"TurnLed", "ON", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.turnLED({0});\n",
 				"loop": ""
@@ -86,7 +86,7 @@
 		["w", "blink on-board LED %n times",
 			"BlinkLed", 3, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.blinkLED({0});\n",
 				"loop": ""
@@ -95,7 +95,7 @@
 		["w", "config keypad: PIN A%n  FORWARD %n  TURN LEFT %n  GO %n  TURN RIGHT %n  BACKWARD %n",
 			"ConfigEscornabot", 4, 230, 532, 462, 368, 586, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.configKeypad(A0+{0}, {1}, {2}, {3}, {4}, {5}, 1002);\n",
 				"loop": ""
@@ -104,7 +104,7 @@
 		["r", "read keypad value",
 			"ReadKeypad", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"",
+				"inc": "#include \"EscornabotDIY.h\"\n",
 				"def": "EscornabotDIY escornabot;\n",
 				"work": "escornabot.readKeypad()",
 				"loop": ""

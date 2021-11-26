@@ -1,5 +1,5 @@
 // Escornabot geometry
-#define WHEEL_RADIUS 38.0 //mm
+#define WHEEL_RADIUS 37.0 //mm
 
 // Stepper motors
 #define STEPPERMOTOR_R_IN1 5
