@@ -3,8 +3,13 @@
 #include <String.h>
 #include "Config.h"
 
-#define STEPPERMOTOR_FULLREVOLUTION_STEPS 4096
-#define WHEEL_CIRCUNFERENCE 2.0 * PI * WHEEL_RADIUS
+// calculations
+// Steppers have a gear ratio of 1:63.7, with 32 steps per turn, using half-stepping -> 63.7 * 32 * 2 = 4076.8
+#define STEPPERMOTOR_FULLREVOLUTION_STEPS 4076.8f //number of steps for a full revolution of the axis
+#define WHEEL_CIRCUNFERENCE float(PI * WHEEL_DIAMETER)
+#define ROTATION_CIRCUNFERENCE float(PI * WHEEL_DISTANCE) // rotation circunference determined by the wheel separation
+#define STEPPERS_STEPS_MM float(STEPPERMOTOR_FULLREVOLUTION_STEPS / WHEEL_CIRCUNFERENCE) // how many steps to move 1 mm
+#define STEPPERS_STEPS_DEG float((ROTATION_CIRCUNFERENCE/360) * STEPPERS_STEPS_MM) // how many steps to rotate the robot 1 degree
 
 const uint8_t numPatterns = 8;
 const uint8_t steppingPatterns[8] = {

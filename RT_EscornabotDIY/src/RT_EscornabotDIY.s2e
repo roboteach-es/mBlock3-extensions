@@ -1,14 +1,14 @@
 {
 	"extensionName": "EscornabotDIY",
 	"description": "Program an Escornabot Brivoi DIY using mBlock3. \nOnly for Arduino mode.",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"author": "ROBOteach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
 	"sort": 0,
 	"javascriptURL": "",
 	"firmware": "1.0",
 	"extensionPort": 0,
-	"tags" : "roboteach, makeblock, Escornabot, robot",
+	"tags" : "roboteach, makeblock, Escornabot, Brivoi-DIY, robot",
 	"blockSpecs": [
 		["h", "EscornabotDIY","runArduino"],
 		["w", "move forward %n cms",
@@ -92,6 +92,35 @@
 				"loop": ""
 			}
 		],
+		["w", "store command %d.commands at %n",
+			"StoreCommand", "CMD_FW", 0,
+			{
+				"setup":"",
+				"inc":"",
+				"def":"char escornabot_program[100];\n",
+				"work":"escornabot_program[int({1})] = {0};\n",
+				"loop":""
+			}
+		],
+		["b", "command at %n is %d.commands",
+			"IsCommand", 0, "CMD_FW", {
+				"setup": "",
+				"inc": "",
+				"def": "char escornabot_program[100];\n",
+				"work":"(escornabot_program[int({0})]=={1})",
+				"loop":""
+			}
+		],
+		["r", "command at %n",
+			"WhatCommand", 0,
+			{
+				"setup":"",
+				"inc":"",
+				"def":"char escornabot_program[100];\n",
+				"work":"escornabot_program[int({0})]",
+				"loop":""
+			}
+		],
 		["w", "config keypad: PIN A%n  FORWARD %n  TURN LEFT %n  GO %n  TURN RIGHT %n  BACKWARD %n",
 			"ConfigEscornabot", 4, 230, 532, 462, 368, 586, {
 				"setup": "",
@@ -114,6 +143,7 @@
 	"menus":{
 		"onoff": ["ON", "OFF"],
 		"buttons": ["FORWARD", "TURN LEFT", "GO", "TURN RIGHT", "BACKWARD"],
+		"commands": ["CMD_FW", "CMD_TL", "CMD_TR", "CMD_BW", "CMD_PA"],
 		"beeps": ["DEFAULT SOUND", "FORWARD SOUND", "TURN LEFT SOUND", "TURN RIGHT SOUND", "BACKWARD SOUND"],
 		"duration": ["SEMIBREVE", "MINIM", "CROTCHET", "QUAVER", "SEMIQUAVER", "DEMISEMIQUAVER", "HEMIDEMISEMIQUAVER"],
 		"notes": ["C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4",
@@ -124,6 +154,11 @@
 	"values":{
 		"ON": 1,
 		"OFF": 0,
+		"CMD_FW": 1,
+		"CMD_TL": 2,
+		"CMD_TR": 3,
+		"CMD_BW": 4,
+		"CMD_PA": 5,
 		"DEFAULT SOUND": 4699,
 		"FORWARD SOUND": 2637,
 		"TURN LEFT SOUND": 2217,
@@ -196,6 +231,9 @@
 			"play %m.notes %m.duration": "toca %m.notes %m.duration",
 			"turn on-board LED %m.onoff": "cambia LED de la placa a %m.onoff",
 			"blink on-board LED %n times": "parpadea el LED de la placa %n veces",
+			"store command %d.commands at %n": "almacena el comando %d.commands en la %n",
+			"command at %n is %d.commands": "el comando en la %n es %d.commands",
+			"command at %n": "comando en la %n",
 			"config keypad: PIN A%n  FORWARD %n  TURN LEFT %n  GO %n  TURN RIGHT %n  BACKWARD %n": "configura teclado: PIN A%n  ADELANTE %n  GIRAR IZQUIERDA %n  INICIAR %n  GIRAR DERECHA %n  ATRÁS %n",
 			"read keypad value": "lee valor del teclado",
 			"FORWARD": "ADELANTE",

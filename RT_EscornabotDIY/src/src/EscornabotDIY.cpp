@@ -41,7 +41,7 @@ EscornabotDIY::~EscornabotDIY() {
 void EscornabotDIY::move(float cms)
 {
 	// calculations
-	int16_t steps = cms * 10 * STEPPERMOTOR_FULLREVOLUTION_STEPS / float(WHEEL_CIRCUNFERENCE); // implicit trunc()
+	int16_t steps = cms * 10 * STEPPERS_STEPS_MM; // implicit trunc()
 	int8_t increment = steps > 0 ? -1 : 1;
 	uint16_t wait = 1000000 / STEPPERMOTOR_STEPS_PER_SECOND; //implicit trunc()
 	bool reversed = cms < 0;
@@ -67,7 +67,7 @@ void EscornabotDIY::move(float cms)
 void EscornabotDIY::turn(float degrees)
 {
 	// calculations
-	int16_t steps = trunc(degrees * STEPPERMOTOR_FULLREVOLUTION_STEPS / 360);
+	int16_t steps = STEPPERS_STEPS_DEG * degrees;
 	int8_t increment = steps > 0 ? -1 : 1;
 	uint16_t wait = trunc(1000000 / STEPPERMOTOR_STEPS_PER_SECOND);
 	bool reversed = degrees < 0;
@@ -147,8 +147,7 @@ void EscornabotDIY::blinkLED(uint8_t times)
 
 void EscornabotDIY::beep(uint16_t frequency)
 {
-	playNote(frequency, 100);
-	delay(100);
+	tone(BUZZER_PIN, frequency, 100);
 }
 
 void EscornabotDIY::playNote(uint16_t frequency, uint16_t duration)
