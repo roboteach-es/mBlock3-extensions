@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <stdint.h>
-#include <String.h>
 #include "Config.h"
 
 // calculations
