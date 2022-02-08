@@ -1,7 +1,7 @@
 {
 	"extensionName": "BH1750",
 	"description": "Use a digital light sensor breakout board containing the BH1750FVI IC. \nOnly for Arduino mode.",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": "ROBOteach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
 	"sort": 0,

@@ -1,7 +1,7 @@
 {
 	"extensionName": "Input-PullUP",
 	"description": "To read digital or analog inputs configured in PULLUP mode.\nOnly for Arduino mode.",
-	"version": "1.0.3",
+	"version": "1.2.0",
 	"author": "ROBOteach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
 	"sort": 0,
