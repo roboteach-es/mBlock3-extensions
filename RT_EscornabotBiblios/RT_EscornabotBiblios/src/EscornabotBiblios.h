@@ -20,10 +20,10 @@ const String buttonsLabels[BUTTONS_TOTAL] = {
 	"FORWARD", "TURN LEFT", "GO", "TURN RIGHT", "BACKWARD", "NONE"
 };
 
-class EscornabotDIY {
+class EscornabotBiblios {
 public:
-	EscornabotDIY();
-	virtual ~EscornabotDIY();
+	EscornabotBiblios();
+	virtual ~EscornabotBiblios();
 	void configKeypad(
 		uint8_t KeypadPin,
 		int16_t KeypadValue_FW,
@@ -51,7 +51,6 @@ public:
 
 	// Extra
 	void fixReversed();
-
 
 private:
 	// Stepper motors
