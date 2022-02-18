@@ -1,7 +1,7 @@
 {
 	"extensionName": "EscornabotDIY",
 	"description": "Program an Escornabot Brivoi DIY using mBlock3. \nOnly for Arduino mode.",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"author": "ROBOteach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
 	"sort": 0,
