@@ -1,11 +1,11 @@
 #include <Arduino.h>
-#include "EscornabotDIY.h"
+#include "Escornabot.h"
 
 ////////////////////////////////////////
 // Initialization
 
 // constructor
-EscornabotDIY::EscornabotDIY() {
+Escornabot::Escornabot() {
 	// Initial setup
 	// Stepper motors
 	pinMode(STEPPERMOTOR_L_IN1, OUTPUT);
@@ -32,13 +32,14 @@ EscornabotDIY::EscornabotDIY() {
 }
 
 // destructor
-EscornabotDIY::~EscornabotDIY() {
+Escornabot::~Escornabot() {
 }
+
 
 ////////////////////////////////////////
 // Stepper motors
 
-void EscornabotDIY::move(float cms)
+void Escornabot::move(float cms)
 {
 	// fixReversed
 	if (_isReversed) cms = -cms;
@@ -66,7 +67,7 @@ void EscornabotDIY::move(float cms)
 	stepRightMotor(0, reversed);
 }
 
-void EscornabotDIY::turn(float degrees)
+void Escornabot::turn(float degrees)
 {
 	// fixReversed
 	if (_isReversed) degrees = -degrees;
@@ -94,7 +95,7 @@ void EscornabotDIY::turn(float degrees)
 	stepRightMotor(0, reversed);
 }
 
-void EscornabotDIY::stepLeftMotor(uint8_t pattern, bool reversed)
+void Escornabot::stepLeftMotor(uint8_t pattern, bool reversed)
 {
 	if (reversed) {
 		digitalWrite(STEPPERMOTOR_L_IN4, bitRead(pattern, 0));
@@ -109,7 +110,7 @@ void EscornabotDIY::stepLeftMotor(uint8_t pattern, bool reversed)
 	}
 }
 
-void EscornabotDIY::stepRightMotor(uint8_t pattern, bool reversed)
+void Escornabot::stepRightMotor(uint8_t pattern, bool reversed)
 {
 	if (reversed) {
 		digitalWrite(STEPPERMOTOR_R_IN1, bitRead(pattern, 0));
@@ -128,12 +129,12 @@ void EscornabotDIY::stepRightMotor(uint8_t pattern, bool reversed)
 ////////////////////////////////////////
 // LED
 
-void EscornabotDIY::turnLED(uint8_t state)
+void Escornabot::turnLED(uint8_t state)
 {
 	digitalWrite(SIMPLELED_PIN, state);
 }
 
-void EscornabotDIY::blinkLED(uint8_t times)
+void Escornabot::blinkLED(uint8_t times)
 {
 	while (times > 0)
 	{
@@ -149,12 +150,12 @@ void EscornabotDIY::blinkLED(uint8_t times)
 ////////////////////////////////////////
 // Buzzer
 
-void EscornabotDIY::beep(uint16_t frequency)
+void Escornabot::beep(uint16_t frequency, uint16_t duration)
 {
-	tone(BUZZER_PIN, frequency, 100);
+	tone(BUZZER_PIN, frequency, duration);
 }
 
-void EscornabotDIY::playNote(uint16_t frequency, uint16_t duration)
+void Escornabot::playNote(uint16_t frequency, uint16_t duration)
 {
 	tone(BUZZER_PIN, frequency, duration);
 	delay(duration);
@@ -163,7 +164,8 @@ void EscornabotDIY::playNote(uint16_t frequency, uint16_t duration)
 
 ////////////////////////////////////////
 // Keypad
-void EscornabotDIY::configKeypad(
+
+void Escornabot::configKeypad(
 	uint8_t KeypadPin,
 	int16_t KeypadValue_FW,
 	int16_t KeypadValue_TL,
@@ -183,12 +185,20 @@ void EscornabotDIY::configKeypad(
 	_keypad_values[5] = KeypadValue_NN;
 }
 
-int16_t EscornabotDIY::readKeypad()
+void Escornabot::setKeypadSpecies(String species)
+{
+	if (species == "Audacius-DIY")
+		configKeypad(A4, 230, 368, 586, 532, 462, 1002);
+	if (species == "Compactus-Bibliotecas")
+		configKeypad(A4, 560, 480, 610, 240, 380, 1010);
+}
+
+int16_t Escornabot::readKeypad()
 {
 	return analogRead(_keypad_pin);
 }
 
-bool EscornabotDIY::isButtonPressed(String label)
+bool Escornabot::isButtonPressed(String label)
 {
 	int8_t buttonPressed = scanButtons();
 	Serial.println(buttonPressed);
@@ -198,7 +208,7 @@ bool EscornabotDIY::isButtonPressed(String label)
 	return false;
 }
 
-int8_t EscornabotDIY::scanButtons()
+int8_t Escornabot::scanButtons()
 {
 	int8_t result, i;
 	int16_t value, diff, minor_diff;
@@ -222,10 +232,11 @@ int8_t EscornabotDIY::scanButtons()
 	return result;
 }
 
+
 ////////////////////////////////////////
 // Extra
-void EscornabotDIY::fixReversed()
+
+void Escornabot::fixReversed()
 {
 	_isReversed = true;
 }
-

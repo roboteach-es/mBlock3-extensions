@@ -20,10 +20,10 @@ const String buttonsLabels[BUTTONS_TOTAL] = {
 	"FORWARD", "TURN LEFT", "GO", "TURN RIGHT", "BACKWARD", "NONE"
 };
 
-class EscornabotDIY {
+class Escornabot {
 public:
-	EscornabotDIY();
-	virtual ~EscornabotDIY();
+	Escornabot();
+	virtual ~Escornabot();
 	void configKeypad(
 		uint8_t KeypadPin,
 		int16_t KeypadValue_FW,
@@ -42,11 +42,12 @@ public:
 	void blinkLED(uint8_t times);
 
 	// Buzzer
-	void beep(uint16_t frequency);
+	void beep(uint16_t frequency, uint16_t duration);
 	void playNote(uint16_t frequency, uint16_t duration);
 
 	// Keypad
 	bool isButtonPressed(String button);
+	void setKeypadSpecies(String species);
 	int16_t readKeypad();
 
 	// Extra

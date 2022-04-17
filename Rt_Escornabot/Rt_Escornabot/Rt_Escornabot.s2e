@@ -1,21 +1,21 @@
 {
-	"extensionName": "EscornabotDIY",
-	"description": "Program an Escornabot Brivoi DIY using mBlock3. \nOnly for Arduino mode.",
-	"version": "1.3.2",
+	"extensionName": "Escornabot Rt",
+	"description": "Program an Escornabot using mBlock3. \nOnly for Arduino mode.",
+	"version": "1.4.0",
 	"author": "ROBOteach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
 	"sort": 0,
 	"javascriptURL": "",
 	"firmware": "1.0",
 	"extensionPort": 0,
-	"tags" : "roboteach, makeblock, Escornabot, Brivoi-DIY, robot",
+	"tags" : "roboteach, makeblock, Escornabot, Brivoi, Audacius, DIY, Compactus, Bibliotecas, robot",
 	"blockSpecs": [
-		["h", "EscornabotDIY","runArduino"],
+		["h", "Escornabot","runArduino"],
 		["w", "move forward %n cms",
 			"MoveForward", 10, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.move({0});\n",
 				"loop": ""
 			}
@@ -23,8 +23,8 @@
 		["w", "move backward %n cms",
 			"MoveBackward", 10, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.move(-{0});\n",
 				"loop": ""
 			}
@@ -32,8 +32,8 @@
 		["w", "turn left %n degrees",
 			"TurnLeft", 90, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.turn(-{0});\n",
 				"loop": ""
 			}
@@ -41,8 +41,8 @@
 		["w", "turn right %n degrees",
 			"TurnRight", 90, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.turn({0});\n",
 				"loop": ""
 			}
@@ -50,26 +50,26 @@
 		["b", "button %m.buttons pressed",
 			"IsButtonPressed", "FORWARD", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work":"escornabot.isButtonPressed({0})",
 				"loop":""
 			}
 		],
-		["w", "beep %m.beeps",
-			"BeepSound", "DEFAULT SOUND", {
+		["w", "beep %m.beeps %n seconds",
+			"BeepSound", "DEFAULT SOUND", 0.1, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
-				"work": "escornabot.beep({0});\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
+				"work": "escornabot.beep({0}, uint16_t({1}*1000));\n",
 				"loop": ""
 			}
 		],
 		["w", "play %m.notes %m.duration",
-			"PlayNote", "A5", "QUAVER", {
+			"PlayNote", "E6", "SEMIQUAVER", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.playNote({0}, {1});\n",
 				"loop": ""
 			}
@@ -77,8 +77,8 @@
 		["w", "turn on-board LED %m.onoff",
 			"TurnLed", "ON", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.turnLED({0});\n",
 				"loop": ""
 			}
@@ -86,8 +86,8 @@
 		["w", "blink on-board LED %n times",
 			"BlinkLed", 3, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.blinkLED({0});\n",
 				"loop": ""
 			}
@@ -124,8 +124,17 @@
 		["w", "fix Reversed Cables",
 			"FixReversed", {
 				"setup": "escornabot.fixReversed();\n",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
+				"work": "",
+				"loop": ""
+			}
+		],
+		["w", "set Escornabot keypad to %m.species",
+			"SetKeypadSpecies", "Audacius-DIY", {
+				"setup": "escornabot.setKeypadSpecies({0});\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "",
 				"loop": ""
 			}
@@ -133,8 +142,8 @@
 		["w", "config keypad: PIN A%n  FORWARD %n  TURN LEFT %n  GO %n  TURN RIGHT %n  BACKWARD %n",
 			"ConfigEscornabot", 4, 230, 532, 462, 368, 586, {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.configKeypad(A0+{0}, {1}, {2}, {3}, {4}, {5}, 1002);\n",
 				"loop": ""
 			}
@@ -142,8 +151,8 @@
 		["r", "read keypad value",
 			"ReadKeypad", {
 				"setup": "",
-				"inc": "#include \"EscornabotDIY.h\"\n",
-				"def": "EscornabotDIY escornabot;\n",
+				"inc": "#include \"Escornabot.h\"\n",
+				"def": "Escornabot escornabot;\n",
 				"work": "escornabot.readKeypad()",
 				"loop": ""
 			}
@@ -151,6 +160,7 @@
 	],
 	"menus":{
 		"onoff": ["ON", "OFF"],
+		"species": ["Audacius-DIY", "Compactus-Bibliotecas"],
 		"buttons": ["FORWARD", "TURN LEFT", "GO", "TURN RIGHT", "BACKWARD"],
 		"commands": ["CMD_FW", "CMD_TL", "CMD_TR", "CMD_BW", "CMD_PA"],
 		"beeps": ["DEFAULT SOUND", "FORWARD SOUND", "TURN LEFT SOUND", "TURN RIGHT SOUND", "BACKWARD SOUND"],
@@ -158,7 +168,8 @@
 		"notes": ["C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4",
 				  "C5", "C#5", "D5", "D#5", "E5", "F5", "F#5", "G5", "G#5", "A5", "A#5", "B5",
 				  "C6", "C#6", "D6", "D#6", "E6", "F6", "F#6", "G6", "G#6", "A6", "A#6", "B6",
-				  "C7", "C#7", "D7", "D#7", "E7", "F7", "F#7", "G7", "G#7", "A7", "A#7", "B7"]
+				  "C7", "C#7", "D7", "D#7", "E7", "F7", "F#7", "G7", "G#7", "A7", "A#7", "B7",
+				  "C8", "C#8", "D8", "D#8", "E8", "F8", "F#8", "G8", "G#8", "A8", "A#8", "B8"]
 	},
 	"values":{
 		"ON": 1,
@@ -227,7 +238,19 @@
 		"G#7": 3322,
 		"A7": 3520,
 		"A#7": 3729,
-		"B7": 3951
+		"B7": 3951,
+		"C8": 4186,
+		"C#8": 4434,
+		"D8": 4698,
+		"D#8": 4978,
+		"E8": 5274,
+		"F8": 5587,
+		"F#8": 5919,
+		"G8": 6271,
+		"G#8": 6644,
+		"A8": 7040,
+		"A#8": 7458,
+		"B8": 7902
 	},
 	"translators":{
 		"es_ES":{
@@ -236,7 +259,7 @@
 			"turn left %n degrees": "gira a la izquierda %n grados",
 			"turn right %n degrees": "gira a la derecha %n grados",
 			"button %m.buttons pressed": "botón %m.buttons pulsado",
-			"beep %m.beeps": "pita %m.beeps",
+			"beep %m.beeps %n seconds": "pita %m.beeps %n segundos",
 			"play %m.notes %m.duration": "toca %m.notes %m.duration",
 			"turn on-board LED %m.onoff": "cambia LED de la placa a %m.onoff",
 			"blink on-board LED %n times": "parpadea el LED de la placa %n veces",
@@ -244,6 +267,7 @@
 			"command at %n is %d.commands": "el comando en la %n es %d.commands",
 			"command at %n": "comando en la %n",
 			"fix Reversed Cables": "arregla Cables Invertidos",
+			"set Escornabot keypad to %m.species": "cambia o teclado do Escornabot a %m.species",
 			"config keypad: PIN A%n  FORWARD %n  TURN LEFT %n  GO %n  TURN RIGHT %n  BACKWARD %n": "configura teclado: PIN A%n  ADELANTE %n  GIRAR IZQUIERDA %n  INICIAR %n  GIRAR DERECHA %n  ATRÁS %n",
 			"read keypad value": "lee valor del teclado",
 			"FORWARD": "ADELANTE",
@@ -251,7 +275,7 @@
 			"GO": "INICIAR",
 			"TURN RIGHT": "GIRAR DERECHA",
 			"BACKWARD": "ATRÁS",
-			"DEFAULT SOUND": "SONIDO BÁSICO",
+			"DEFAULT SOUND": "SONIDO POR DEFECTO",
 			"FORWARD SOUND": "SONIDO ADELANTE",
 			"TURN LEFT SOUND": "SONIDO GIRAR IZQUERDA",
 			"TURN RIGHT SOUND": "SONIDO GIRAR DERECHA",

@@ -1,13 +1,13 @@
-# Escornabot Brivoi DIY - mBlock3 extension
+# Escornabot - mBlock3 extension
 
-Allows you to program a [Escornabot Brivoi DIY](https://escornabot.org) within the mBlock3 IDE.
+Allows you to program a [Escornabot](https://escornabot.org) within the mBlock3 IDE.
 
 Only valid for Arduino mode.
 
 Spanish translation included.
 
 ## Install
-You can add this extension to mBlock3 through the *Manage Extesions* option in the *Extensions* menu. You can also download the [RT_EscornabotDIY.zip file](RT_EscornabotDIY.zip) and install it manually via the *Add Extension* button in the same *Manage Extensions* dialog.
+You can add this extension to mBlock3 through the *Manage Extesions* option in the *Extensions* menu. You can also download the [Rt_Escornabot.zip file](Rt_Escornabot.zip) and install it manually via the *Add Extension* button in the same *Manage Extensions* dialog.
 
 ## Examples
 Find examples of use in the `examples` folder:
