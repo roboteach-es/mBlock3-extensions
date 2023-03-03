@@ -1,16 +1,16 @@
 {
 	"extensionName": "Escornabot Rt",
 	"description": "Program an Escornabot using mBlock3. \nOnly for Arduino mode.",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"author": "ROBOteach(info@roboteach.es)",
 	"homepage": "https://roboteach.es/mblock3",
-	"sort": 0,
+	"sort": 1,
 	"javascriptURL": "",
 	"firmware": "1.0",
 	"extensionPort": 0,
 	"tags" : "roboteach, makeblock, Escornabot, Brivoi, Audacius, DIY, Compactus, Bibliotecas, robot",
 	"blockSpecs": [
-		["h", "Escornabot","runArduino"],
+		["h", "Escornabot", "runArduino"],
 		["w", "move forward %n cms",
 			"MoveForward", 10, {
 				"setup": "",
